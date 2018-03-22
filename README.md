@@ -9,5 +9,5 @@ npm start
 
 Run with nodemon.
 ```js
-$ npm run startdev
+npm run startdev
 ```
