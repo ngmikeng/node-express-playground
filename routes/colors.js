@@ -38,9 +38,10 @@ router.get('/', function(req, res, next) {
 		}
 		return item;
 	});
-	
-	console.log(data);
-  	res.render('pages/color', { title: 'Color', data: data });
+
+  data.sort((a, b) => a.value - b.value);
+
+  res.render('pages/color', { title: 'Color', data: data });
 });
 
 module.exports = router;

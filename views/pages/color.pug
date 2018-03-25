@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  h1= title
+
+  table
+    thead
+      tr
+        th Value
+        th Color
+    tbody
+      each val in data
+        tr
+          td #{val.value}
+          td
+            span(style={display:  'inline-block', width: '20px', height: '20px', background: val.color})
