@@ -1,16 +1,23 @@
 extends ../layout
 
 block content
-  h1= title
+  // Breadcrumbs
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href='index.html') Dashboard
+    li.breadcrumb-item.active= title
+  .row
+    .col-12
+      h1= title
 
-  table
-    thead
-      tr
-        th Value
-        th Color
-    tbody
-      each val in data
-        tr
-          td #{val.value}
-          td
-            span(style={display:  'inline-block', width: '20px', height: '20px', background: val.color})
+      table
+        thead
+          tr
+            th Value
+            th Color
+        tbody
+          each val in data
+            tr
+              td #{val.value}
+              td
+                span(style={display:  'inline-block', width: '20px', height: '20px', background: val.color})
