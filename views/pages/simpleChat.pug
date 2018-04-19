@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  // Breadcrumbs
+  ol.breadcrumb
+    li.breadcrumb-item
+      a(href='/') Dashboard
+    li.breadcrumb-item.active= title
+  .row
+    .col-12
+      h1= title
+
+      .container-fluid
+        .row
+          .col-12
+            .card
+              .card-header.bg-primary
+                h4 Hello
+              .card-body
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis aperiam tempore eveniet nobis voluptatibus incidunt hic cum nihil maiores dolores cumque, consequuntur facere corporis asperiores ab accusamus optio, rem quibusdam!
+
