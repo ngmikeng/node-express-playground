@@ -3,12 +3,24 @@ const router = express.Router();
 const ColorsCtrl = require('../controllers/colors');
 
 router.get('/', function(req, res, next) {
-	let data = ColorsCtrl.getRandomDataWithColor(['#000', '#cdcdcd', '#fff'], 100, 0, 1000);
+	// let data = ColorsCtrl.getRandomDataWithColor(['#000', '#cdcdcd', '#fff'], 100, 0, 1000);
 
 	res.render('pages/color', {
 		title: 'Color',
-		data: data
+		data: []
 	});
+});
+
+router.post('/', function(req, res, next) {
+  let formData = req.body;
+  let data = ColorsCtrl.getRandomDataWithColor([formData.colorStart, formData.colorEnd], 100, 0, 1000);
+
+  res.render('pages/color', {
+    title: 'Color submitted',
+    data: data,
+    colorStart: formData.colorStart,
+    colorEnd: formData.colorEnd
+  });
 });
 
 module.exports = router;
