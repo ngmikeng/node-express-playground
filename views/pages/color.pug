@@ -10,23 +10,38 @@ block content
     .col-12
       h1= title
 
-      form(action="/colors", method="post", class="form-inline")
-        .form-group.mb-2
-          label(for="colorStart") Start Color
-          input(type="text", name="colorStart", id="start-colorpicker", class="form-control", value=colorStart)
-        .form-group.mb-2
-          label(for="colorEnd") End Color
-          input(type="text", name="colorEnd", id="end-colorpicker", class="form-control", value=colorEnd)
-        button(type="submit" class="btn btn-primary") Submit
+      form(action="/colors", method="get", id="form-select-number-color")
+        .form-row
+          .col-6
+            .form-group
+              label(for="numberColor") Select number of colors
+              select(class="form-control", name="numberColor", id="select-colors")
+                each num in [2, 3]
+                  if num == numberColor
+                    option(value=num, selected="selected") #{num} colors
+                  else
+                    option(value=num) #{num} colors
 
-      table
-        thead
-          tr
-            th Value
-            th Color
-        tbody
-          each val in data
+      form(action="/colors", method="post", class="form-inline")
+        //- .form-group.mr-1
+        //-   label(for="colorStart", class="mr-1") Start Color
+        //-   input(type="text", name="colorStart", id="start-colorpicker", class="form-control", value=colorStart)
+        //- .form-group.mr-1
+        //-   label(for="colorEnd", class="mr-1") End Color
+        //-   input(type="text", name="colorEnd", id="end-colorpicker", class="form-control", value=colorEnd)
+        #list-colors
+        .form-group
+          button(type="submit" class="btn btn-primary") Submit
+
+      if data && data.length > 0
+        table
+          thead
             tr
-              td #{val.value}
-              td
-                span(style={display:  'inline-block', width: '20px', height: '20px', background: val.color})
+              th Value
+              th Color
+          tbody
+            each val in data
+              tr
+                td #{val.value}
+                td
+                  span(style={display:  'inline-block', width: '20px', height: '20px', background: val.color})

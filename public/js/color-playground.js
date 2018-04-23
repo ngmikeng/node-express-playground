@@ -16,4 +16,13 @@
       $('#end-colorpicker').val(tinycolor.toHexString());
     }
   });
+
+  $('#select-colors').on('change', function(event) {
+    $('#form-select-number-color').submit();
+    console.log(event.target.value);
+  });
+
+  function onSelectNumberColor(event) {
+    console.log(event.target.value);
+  }
 })(jQuery);
