@@ -4,36 +4,41 @@ block content
   // Breadcrumbs
   ol.breadcrumb
     li.breadcrumb-item
-      a(href='index.html') Dashboard
+      a(href='/') Dashboard
     li.breadcrumb-item.active= title
   .row
     .col-12
       h1= title
 
-      form(action="/colors", method="get", id="form-select-number-color")
-        .form-row
-          .col-6
+      if (!data || data.length === 0)
+        form(action="/colors", method="get", id="form-select-number-color")
+          .form-row
+            .col-6
+              .form-group
+                label(for="numberColor") Select number of colors
+                select(class="form-control", name="numberColor", id="select-colors")
+                  each num in [2, 3]
+                    if (num === numberColor)
+                      option(value=num, selected) #{num} colors
+                    else
+                      option(value=num) #{num} colors
+
+        form(action="/colors/colorData", method="post", class="form-inline")
+          .form-group.mr-1
+            label(for="colorStart", class="mr-1") Start Color
+            input(type="text", name="colorStart", id="start-colorpicker", class="form-control", value=colorStart)
+          if (numberColor === 3)
+            .form-group.mr-1
+              label(for="colorMid", class="mr-1") Mid Color
+              input(type="text", name="colorMid", id="mid-colorpicker", class="form-control", value=colorMid)
+          .form-group.mr-1
+            label(for="colorEnd", class="mr-1") End Color
+            input(type="text", name="colorEnd", id="end-colorpicker", class="form-control", value=colorEnd)
+          #list-colors
             .form-group
-              label(for="numberColor") Select number of colors
-              select(class="form-control", name="numberColor", id="select-colors")
-                each num in [2, 3]
-                  if num == numberColor
-                    option(value=num, selected="selected") #{num} colors
-                  else
-                    option(value=num) #{num} colors
+              button(type="submit" class="btn btn-primary") Submit
 
-      form(action="/colors", method="post", class="form-inline")
-        //- .form-group.mr-1
-        //-   label(for="colorStart", class="mr-1") Start Color
-        //-   input(type="text", name="colorStart", id="start-colorpicker", class="form-control", value=colorStart)
-        //- .form-group.mr-1
-        //-   label(for="colorEnd", class="mr-1") End Color
-        //-   input(type="text", name="colorEnd", id="end-colorpicker", class="form-control", value=colorEnd)
-        #list-colors
-        .form-group
-          button(type="submit" class="btn btn-primary") Submit
-
-      if data && data.length > 0
+      if (data && data.length > 0)
         table
           thead
             tr

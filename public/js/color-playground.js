@@ -1,5 +1,6 @@
 (function($) {
   var colorStart = $('#start-colorpicker').val() || "#f00";
+  var colorMid = $('#mid-colorpicker').val() || "#c44";
   var colorEnd = $('#end-colorpicker').val() || "#f88";
   $('#start-colorpicker').val(colorStart);
   $('#end-colorpicker').val(colorEnd);
@@ -8,6 +9,12 @@
     color: colorStart,
     change: function(tinycolor) {
       $('#start-colorpicker').val(tinycolor.toHexString());
+    }
+  });
+  $('#mid-colorpicker').spectrum({
+    color: colorMid,
+    change: function(tinycolor) {
+      $('#mid-colorpicker').val(tinycolor.toHexString());
     }
   });
   $('#end-colorpicker').spectrum({
