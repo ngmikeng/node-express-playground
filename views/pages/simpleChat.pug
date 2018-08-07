@@ -17,5 +17,18 @@ block content
               .card-header.bg-primary
                 h4 Hello
               .card-body
-                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis aperiam tempore eveniet nobis voluptatibus incidunt hic cum nihil maiores dolores cumque, consequuntur facere corporis asperiores ab accusamus optio, rem quibusdam!
+                ul
+                  li
+                    span MMM
+                    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis aperiam tempore eveniet nobis voluptatibus incidunt hic cum nihil maiores dolores cumque, consequuntur facere corporis asperiores ab accusamus optio, rem quibusdam!
+                form#formName
+                  .form-group.row
+                    label.col-sm-2.col-form-label Name
+                    .col-sm-10
+                      input#inputName.form-control(type='text' placeholder='Name')
+                form#formMessage(style="display: none")
+                  .form-group.row
+                    label.col-sm-2.col-form-label Message
+                    .col-sm-10
+                      input#inputMessage.form-control(type='text' placeholder='Message')
 

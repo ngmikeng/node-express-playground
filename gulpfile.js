@@ -33,12 +33,18 @@ gulp.task('vendor', function() {
     ])
     .pipe(gulp.dest('./public/vendor/jquery-easing'))
 
-    // jQuery spectrum colorpicker
+  // jQuery spectrum colorpicker
   gulp.src([
       './node_modules/spectrum-colorpicker/spectrum.js',
       './node_modules/spectrum-colorpicker/spectrum.css'
     ])
     .pipe(gulp.dest('./public/vendor/spectrum-colorpicker'))
+
+  // Socket.io Client
+  gulp.src([
+      './node_modules/socket.io-client/dist/socket.io.js'
+    ])
+    .pipe(gulp.dest('./public/vendor/socket.io'))
 });
 
 // Default task
