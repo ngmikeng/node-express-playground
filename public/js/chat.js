@@ -57,13 +57,20 @@
     }
   }
 
-  function createMessageNode(name, message) {
+  function createMessageNode(name, message, time, color) {
     var liNode = document.createElement('li');
+    liNode.classList.add('chat-messageItem');
     var nameNode = document.createElement('span');
+    nameNode.classList.add('chat-messageUserName');
     nameNode.appendChild(document.createTextNode(name));
+    var timeNode = document.createElement('small');
+    timeNode.classList.add('chat-messageTime');
+    timeNode.appendChild(document.createTextNode(time));
     var messageNode = document.createElement('p');
+    messageNode.classList.add('chat-messageContent');
     messageNode.appendChild(document.createTextNode(message));
     liNode.appendChild(nameNode);
+    liNode.appendChild(timeNode);
     liNode.appendChild(messageNode);
     if (listMessages) {
       listMessages.appendChild(liNode);
