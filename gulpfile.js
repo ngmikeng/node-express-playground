@@ -40,6 +40,13 @@ gulp.task('vendor', function() {
     ])
     .pipe(gulp.dest('./public/vendor/spectrum-colorpicker'))
 
+  // emoji-js
+  // Socket.io Client
+  gulp.src([
+      './node_modules/emoji-js/lib/emoji.js'
+    ])
+    .pipe(gulp.dest('./public/vendor/emoji-js'))
+
   // Socket.io Client
   gulp.src([
       './node_modules/socket.io-client/dist/socket.io.js'

@@ -29,7 +29,8 @@ function socketServer(httpServer) {
             if (listUsers[id] && listUsers[id].id !== socket.id && listUsers[id].socket) {
               listUsers[id].socket.emit('receiveMessage', {
                 name: currentUser.name,
-                message: data
+                message: data,
+                time: Date.now()
               });
             }
           }

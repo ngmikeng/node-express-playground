@@ -5,6 +5,10 @@
   var inputMessage = document.getElementById('inputMessage');
   var listMessages = document.getElementById('listMessages');
   var socketClient = null;
+  var emoji = new EmojiConvertor();
+  emoji.init_env();
+  emoji.replace_mode = 'unified';
+  emoji.allow_native = true;
 
   if (formName) {
     formName.addEventListener('submit', function(event) {
@@ -21,9 +25,8 @@
           }
 
           socketClient.on('receiveMessage', function(data) {
-            console.log(data);
             if (data && data.name && data.message) {
-              createMessageNode(data.name, data.message);
+              createMessageNode(data.name, data.message, formatTime(data.time));
             }
           });
         }
@@ -35,9 +38,10 @@
     formMessage.addEventListener('submit', function(event) {
       event.preventDefault();
       if (socketClient) {
-        if (inputMessage) {
+        if (inputMessage && inputName) {
+          var name = inputName.value;
           var message = inputMessage.value;
-          createMessageNode('YOU', message);
+          createMessageNode(name, message, formatTime(), true);
           inputMessage.value = '';
           socketClient.emit('sendMessage', message);
         }
@@ -68,12 +72,29 @@
     timeNode.appendChild(document.createTextNode(time));
     var messageNode = document.createElement('p');
     messageNode.classList.add('chat-messageContent');
-    messageNode.appendChild(document.createTextNode(message));
+    if (color) {
+      messageNode.classList.add('bg-info', 'text-light');
+    }
+    var messageData = emoji.replace_colons(message);
+    messageNode.appendChild(document.createTextNode(messageData));
     liNode.appendChild(nameNode);
     liNode.appendChild(timeNode);
     liNode.appendChild(messageNode);
     if (listMessages) {
       listMessages.appendChild(liNode);
     }
+  }
+
+  function formatTime(time) {
+    var hours = new Date().getHours();
+    var minutes = new Date().getMinutes();
+    var seconds = new Date().getSeconds();
+    if (time) {
+      hours = new Date(time).getHours();
+      minutes = new Date(time).getMinutes();
+      seconds = new Date(time).getSeconds();
+    }
+
+    return hours + ':' + minutes + ':' + seconds;
   }
 })()
